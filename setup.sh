@@ -36,7 +36,6 @@ bash /root/task.sh
 sudo rm /etc/profile.d/sshpwd.sh
 sudo mv /root/uuid.sh /etc/profile.d
 sudo chmod +x /etc/profile.d/uuid.sh
-clear
 
 echo " "
 echo " "
