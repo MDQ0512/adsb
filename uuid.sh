@@ -1,0 +1,1 @@
+echo "你的UUID是:"$(sudo cat /root/get_message/UUID)
