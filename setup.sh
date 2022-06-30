@@ -1,15 +1,13 @@
 #!/bin/bash
 clear
 echo " "
-echo "Setup VariFlight ADS-B Client..."
-echo "You will first need a working version of any feeder before proceeding."
-echo "Example FlightAware or any pre-build ADS-B image already installed."
-echo "Else setup for VariFlight feeder will fail!"
-echo "This setup script just borrow the existing feeder Dump1090 decoder to function."
+echo "安装飞常准 ADS-B 客户端..."
+echo "请确保您的设备中有可以正常工作的 ADS-B 程序."
+echo "例如已预构建 ADS-B 映像或脚本安装的 ADS-B 程序 ."
+echo "否则安装程序将设置失败!"
+echo "此设置脚本依靠 Dump1090 Dump1090-fa Readsb 等解码器即可运行."
 echo " "
 
-apt-get update -y
-#apt-get upgrade -y
 apt-get install dos2unix -y
 
 cd /root
@@ -33,37 +31,19 @@ crontab mycron
 rm mycron
 crontab -e
 
-clear
-echo " "
-echo " "
-echo "UUID : "
-cat /root/get_message/UUID
-sleep 20
-echo " "
-echo " "
 bash /root/get_message/init.sh
 bash /root/task.sh
+sudo rm /etc/profile.d/sshpwd.sh
+sudo mv /root/uuid.sh /etc/profile.d
+sudo chmod +x /etc/profile.d/uuid.sh
 clear
 
 echo " "
 echo " "
-echo "Standy by 1 minute to reboot and activation..."
-echo "Please copy down the UUID code together with your"
-echo "nearest airport Name / ICAO code to mailto:adsb@variflight.com"
-echo "And please register online at http://flightadsb.variflight.com"
-echo "for new account membership creation."
-echo " "
-echo "If you are using WiFi please modify {nano /root/get_message/get_ip.py}"
-echo "Change the value to "eth0" to "wlan0" at the end of the script"
-echo "e.g. {eth=get_ip_address('eth0')}"
+echo "程序将在1分钟重新启动并激活..."
+echo "UUID代码将在设备重新启动后显示在屏幕上"
+echo "同时请将UUID代码与您的账户相关联"
 echo " "
 echo " "
-echo "Thank you."
-echo "VariFlight Team "
-echo " "
-echo " "
-echo " "
-echo " "
-echo "Engineered by Rodney Yeo @ http://rodyeo.dyndns.org/"
 sleep 60
 reboot
